@@ -8,7 +8,7 @@
   <div class="container point" v-if="minute === 0 && second === 0">
     <button
       class="newGame"
-      v-on:click="(minute = 5), (second = 59), (points = 0), countDown()"
+      v-on:click="(minute = 2), (second = 59), (points = 0), countDown()"
     >
       New Game
     </button>
@@ -39,8 +39,8 @@ import words from "./words.json";
 export default {
   data() {
     return {
-      second: 12,
-      minute: 0,
+      second: 59,
+      minute: 2,
       word: "",
       setWords: [],
       words: words,
