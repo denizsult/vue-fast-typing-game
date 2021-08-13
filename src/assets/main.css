@@ -1,0 +1,81 @@
+@font-face {
+  font-family: "arcade";
+  src: url("../assets/font.ttf") format("truetype");
+}
+
+.center {
+  margin-top: 5% !important;
+  border: 1px solid #ccc;
+  width: 50%;
+  height: 500px;
+  background: wheat;
+  border-radius: 10px;
+  margin-left: 450px;
+  text-align: center;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container p {
+  margin: 10px;
+  margin-top: 100px;
+  opacity: 0.9;
+}
+
+.counter {
+  margin-right: 600px;
+  font-family: arcade;
+  font-size: 2em;
+}
+
+.container p:first-child {
+  font-size: 6em;
+  opacity: 1;
+}
+
+input {
+  border: 5px solid red;
+  height: 30px;
+  width: 600px;
+  font-size: 1.5em;
+}
+
+input:focus {
+  border: 5px solid green;
+}
+
+.point {
+  font-family: arcade;
+  font-size: 2em;
+}
+
+.flipper {
+  transition: 2s;
+  transform-style: preserve-3d;
+}
+.coin {
+  animation: rotation 1s infinite linear;
+  margin: 10px;
+}
+@keyframes rotation {
+  100% {
+    transform: rotatey(360deg);
+  }
+}
+
+.newGame {
+  margin-top: 20px;
+  font-size: 1em;
+  font-family: arcade;
+  color: #fff;
+  background: grey;
+  border-radius: 20px;
+}
+
+.countDown {
+  font-size: 1.2em;
+}
