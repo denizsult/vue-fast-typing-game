@@ -5,10 +5,10 @@
     {{ total }}
   </div>
 
-  <div class="container point" v-if="minute === 0 && second === 0">
+  <div class="container point" v-if="!show">
     <button
       class="newGame"
-      v-on:click="(minute = 2), (second = 59), (points = 0), countDown()"
+      v-on:click="(minute = 5), (second = 59), (points = 0), countDown()"
     >
       New Game
     </button>
@@ -27,10 +27,18 @@
     </div>
 
     <div class="container">
-      <p v-for="item in setWords" :key="item.id">{{ item }}</p>
+      <p
+        oncopy="return false"
+        oncut="return false"
+        onpaste="return false"
+        v-for="item in setWords"
+        :key="item.id"
+      >
+        {{ item }}
+      </p>
     </div>
 
-    <input @input="wordInput(word)" v-model="word" />
+    <input v-if="show" @input="wordInput(word)" v-model="word" />
   </div>
 </template>
 
@@ -39,11 +47,12 @@ import words from "./words.json";
 export default {
   data() {
     return {
+      show: true,
       second: 59,
-      minute: 2,
+      minute: 1,
       word: "",
       setWords: [],
-      words: words,
+      words: words.map((x) => x.toLowerCase()),
       points: 0,
       big: false,
       total: localStorage.getItem("score"),
@@ -55,6 +64,14 @@ export default {
         this.words[Math.floor(Math.random() * this.words.length)]
       );
     }
+
+    window.addEventListener(
+      "contextmenu",
+      function (e) {
+        e.preventDefault();
+      },
+      false
+    );
 
     this.countDown();
   },
@@ -69,9 +86,11 @@ export default {
     countDown() {
       setTimeout(() => {
         this.second -= 1;
-
+        this.show = true;
         if (this.minute === 0 && this.second === 0) {
-          alert("Süreniz Bitti!");
+          alert("Tüh! Süreniz Bitti! Yazık...");
+          this.word = "";
+          this.show = false;
           if (this.points > this.total) {
             localStorage.setItem("score", this.points);
             this.total = this.points;
@@ -87,16 +106,19 @@ export default {
           this.countDown();
         } else if (this.second === 0) {
           this.minute -= 1;
-          this.second = 0;
           this.second = 59;
           this.countDown();
         } else {
           this.countDown();
         }
-      }, 1000);
+      }, 200);
     },
 
-    wordInput(word) {
+   
+   
+   
+   
+   wordInput(word) {
       if (word === this.setWords[0]) {
         this.word = "";
         this.points += 10;
@@ -107,6 +129,7 @@ export default {
   },
 };
 </script>
+
 
 <style scoped>
 @font-face {
