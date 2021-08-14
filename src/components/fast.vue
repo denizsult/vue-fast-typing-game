@@ -102,19 +102,13 @@ export default {
           alert("Tüh! Süreniz Bitti! Yazık...");
           this.word = "";
           this.show = false;
-          
-          
-          
-          if (0 >= this.correct.length) {
-            this.percent = 0;
-          } else {
-            let toplam = this.correct.length + this.wrong.length;
-            this.percent = Math.floor((100 * this.correct.length) / toplam);
-            if (this.points > this.total) {
-              localStorage.setItem("score", this.points);
-              this.total = this.points;
-              this.points = 0;
-            }
+
+          let toplam = this.correct.length + this.wrong.length;
+          this.percent = Math.floor((100 * this.correct.length) / toplam);
+          if (this.points > this.total) {
+            localStorage.setItem("score", this.points);
+            this.total = this.points;
+            this.points = 0;
           }
         } else if (this.minute === 0 && this.second < 10) {
           if (this.second % 2 === 0) {
