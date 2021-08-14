@@ -40,7 +40,7 @@
       </p>
     </div>
 
-    <input v-if="show" v-model="word" ref="grs" />
+    <input autoFocus  v-if="show" v-model="word" ref="grs" />
   </div>
 </template>
 
@@ -69,7 +69,7 @@ export default {
         this.words[Math.floor(Math.random() * this.words.length)]
       );
     }
-    this.$refs.grs.focus();
+
 
     document.addEventListener("keydown", (e) => {
       if (e.code === "Space") {
