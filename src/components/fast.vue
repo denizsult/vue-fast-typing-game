@@ -5,7 +5,7 @@
     {{ total }}
   </div>
   <span v-if="!show" class="point container">
-    Doğruluk Oranı {{ percent }} %</span
+    Accuracy Rate {{ percent }} %</span
   >
   <div class="container point" v-if="!show">
     <button
