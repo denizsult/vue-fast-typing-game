@@ -160,11 +160,11 @@ export default {
 .center {
   margin-top: 5% !important;
   border: 1px solid #ccc;
-  width: 50%;
+  width: 70%;
   height: 500px;
   background: wheat;
   border-radius: 10px;
-  margin-left: 450px;
+  margin-left: 200px;
   text-align: center;
 }
 
