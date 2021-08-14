@@ -143,9 +143,7 @@ export default {
         this.newWord();
       } else {
         this.wrong.push(this.word);
-
         this.word = "";
-        this.points += 10;
         this.setWords.shift();
         this.newWord();
       }
