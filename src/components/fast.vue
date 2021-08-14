@@ -69,6 +69,7 @@ export default {
         this.words[Math.floor(Math.random() * this.words.length)]
       );
     }
+    this.$refs.grs.focus();
 
     document.addEventListener("keydown", (e) => {
       if (e.code === "Space") {
