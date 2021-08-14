@@ -40,7 +40,7 @@
       </p>
     </div>
 
-    <input autoFocus  v-if="show" v-model="word" ref="grs" />
+    <input autoFocus v-if="show" v-model="word" ref="grs" />
   </div>
 </template>
 
@@ -69,7 +69,6 @@ export default {
         this.words[Math.floor(Math.random() * this.words.length)]
       );
     }
-
 
     document.addEventListener("keydown", (e) => {
       if (e.code === "Space") {
@@ -106,7 +105,7 @@ export default {
           this.word = "";
           this.show = false;
 
-          if (this.correct.values < 0) {
+          if (0 >= this.correct.values) {
             this.percent = 0;
           } else {
             let toplam = this.correct.length + this.wrong.length;
