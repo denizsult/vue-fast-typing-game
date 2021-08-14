@@ -102,7 +102,10 @@ export default {
           alert("Tüh! Süreniz Bitti! Yazık...");
           this.word = "";
           this.show = false;
-          if (0 > this.correct.length) {
+          
+          
+          
+          if (0 >= this.correct.length) {
             this.percent = 0;
           } else {
             let toplam = this.correct.length + this.wrong.length;
