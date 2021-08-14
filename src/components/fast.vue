@@ -4,7 +4,9 @@
     <img class="coin flipper" style="width: 30px" src="../assets/coin.svg" />
     {{ total }}
   </div>
-
+  <span v-if="!show" class="point container">
+    Doğruluk Oranı {{ percent }} %</span
+  >
   <div class="container point" v-if="!show">
     <button
       class="newGame"
@@ -38,7 +40,7 @@
       </p>
     </div>
 
-    <input v-if="show" @input="wordInput(word)" v-model="word" />
+    <input v-if="show" @keyup.space="keyCode" v-model="word" />
   </div>
 </template>
 
@@ -47,14 +49,17 @@ import words from "./words.json";
 export default {
   data() {
     return {
+      correct: [],
+      wrong: [],
       show: true,
       second: 59,
-      minute: 1,
+      minute: 0,
       word: "",
       setWords: [],
       words: words.map((x) => x.toLowerCase()),
       points: 0,
       big: false,
+      percent: 0,
       total: localStorage.getItem("score"),
     };
   },
@@ -64,6 +69,12 @@ export default {
         this.words[Math.floor(Math.random() * this.words.length)]
       );
     }
+
+    document.addEventListener("keydown", (e) => {
+      if (e.code === "Space") {
+        this.wordInput();
+      }
+    });
 
     window.addEventListener(
       "contextmenu",
@@ -91,6 +102,11 @@ export default {
           alert("Tüh! Süreniz Bitti! Yazık...");
           this.word = "";
           this.show = false;
+
+          let toplam = this.correct.length + this.wrong.length;
+
+          this.percent = Math.floor((100 * this.correct.length) / toplam);
+
           if (this.points > this.total) {
             localStorage.setItem("score", this.points);
             this.total = this.points;
@@ -114,12 +130,16 @@ export default {
       }, 200);
     },
 
-   
-   
-   
-   
-   wordInput(word) {
-      if (word === this.setWords[0]) {
+    wordInput() {
+      if (this.word === this.setWords[0]) {
+        this.correct.push(this.word);
+        this.word = "";
+        this.points += 10;
+        this.setWords.shift();
+        this.newWord();
+      } else {
+        this.wrong.push(this.word);
+
         this.word = "";
         this.points += 10;
         this.setWords.shift();
