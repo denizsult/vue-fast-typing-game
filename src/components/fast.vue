@@ -40,7 +40,7 @@
       </p>
     </div>
 
-    <input v-if="show" @keyup.space="keyCode" v-model="word" />
+    <input v-if="show" v-model="word" ref="grs" />
   </div>
 </template>
 
@@ -72,7 +72,9 @@ export default {
 
     document.addEventListener("keydown", (e) => {
       if (e.code === "Space") {
+        e.returnValue = false;
         this.wordInput();
+        this.word = "";
       }
     });
 
@@ -102,7 +104,6 @@ export default {
           alert("Tüh! Süreniz Bitti! Yazık...");
           this.word = "";
           this.show = false;
-
           let toplam = this.correct.length + this.wrong.length;
           this.percent = Math.floor((100 * this.correct.length) / toplam);
           if (this.points > this.total) {
@@ -131,13 +132,11 @@ export default {
     wordInput() {
       if (this.word === this.setWords[0]) {
         this.correct.push(this.word);
-        this.word = "";
         this.points += 10;
         this.setWords.shift();
         this.newWord();
       } else {
         this.wrong.push(this.word);
-        this.word = "";
         this.setWords.shift();
         this.newWord();
       }
