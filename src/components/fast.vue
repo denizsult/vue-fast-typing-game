@@ -128,7 +128,7 @@ export default {
         } else {
           this.countDown();
         }
-      }, 200);
+      }, 1000);
     },
 
     wordInput() {
