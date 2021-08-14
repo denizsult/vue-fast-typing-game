@@ -53,7 +53,7 @@ export default {
       wrong: [],
       show: true,
       second: 59,
-      minute: 0,
+      minute: 1,
       word: "",
       setWords: [],
       words: words.map((x) => x.toLowerCase()),
