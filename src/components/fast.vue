@@ -164,7 +164,7 @@ export default {
   height: 500px;
   background: wheat;
   border-radius: 10px;
-  margin-left: 200px;
+  margin-left: 300px;
   text-align: center;
 }
 
