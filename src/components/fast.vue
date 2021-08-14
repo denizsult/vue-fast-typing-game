@@ -52,7 +52,7 @@ export default {
       correct: [],
       wrong: [],
       show: true,
-      second: 59,
+      second: 30,
       minute: 1,
       word: "",
       setWords: [],
