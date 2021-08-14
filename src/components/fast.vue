@@ -10,7 +10,7 @@
   <div class="container point" v-if="!show">
     <button
       class="newGame"
-      v-on:click="(minute = 5), (second = 59), (points = 0), countDown()"
+      v-on:click="(minute = 1), (second = 30), (points = 0), countDown()"
     >
       New Game
     </button>
